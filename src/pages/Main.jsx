@@ -1,19 +1,14 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useContext } from "react";
+
 import Card from "../components/Card";
 import AddToList from "../components/AddToList";
 import List from "../components/List";
+import toDoContext from "../store";
 
 const MainPage = () => {
-  const [toDoItems, setToDoItems] = useState([
-    "Learn React",
-    "Finish coding sprint",
-  ]);
-
-  const addItemHandler = (item) => {
-    setToDoItems((prev) => prev.concat(item));
-    console.log(toDoItems);
-  };
+  const { toDoItems, addItemHandler, checked, checkHandler } =
+    useContext(toDoContext);
 
   return (
     <>
@@ -22,7 +17,7 @@ const MainPage = () => {
       <Link to="history">History</Link>
       <Card>
         <AddToList onAddItem={addItemHandler} />
-        <List toDoItems={toDoItems} />
+        <List toDoItems={toDoItems} onCheck={checkHandler} checked={checked} />
       </Card>
     </>
   );

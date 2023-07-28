@@ -1,5 +1,6 @@
 import "./App.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { ToDoContextProvider } from "./store";
 
 import MainPage from "./pages/Main";
 import HistoryPage from "./pages/History";
@@ -16,7 +17,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <ToDoContextProvider>
+      <RouterProvider router={router} />
+    </ToDoContextProvider>
+  );
 }
 
 export default App;
